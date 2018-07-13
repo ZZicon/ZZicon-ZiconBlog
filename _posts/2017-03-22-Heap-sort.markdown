@@ -1,0 +1,99 @@
+---
+layout:     post
+title:      "算法之堆排序"
+subtitle:   "父与子"
+date:       2017-03-14 22:06:00
+author:     "Zicon"
+header-img: "img/post-bg.jpg"
+catalog: true
+tags:
+    - 算法
+---
+
+> “二叉堆”
+
+
+# 前言
+
+最大堆：根结点的键值是所有堆结点键值中最大者，且每个结点的值都比其孩子的值大。
+
+最小堆：根结点的键值是所有堆结点键值中最小者，且每个结点的值都比其孩子的值小。
+
+---
+
+# 正文
+
+生成最大堆：最大堆通常都是一棵完全二叉树，因此我们使用数组的形式来存储最大堆的值，父结点跟子结点的关系如下：
+
+`heap[lchild] = heap[father * 2 + 1];`
+`heap[rchild] = heap[lchild + 1] = heap[(father * 2) + 1];`
+
+堆排序在算法导论中的伪代码因为是从下标1开始进行元素存储，因此会对编程带来一定迷惑性。
+
+有需要的可以自行搜索，很容易就可以找到伪代码。Zicon直接给出Java代码。
+
+**Java代码**
+
+***调整堆***
+
+```
+public static void MaxHeapify(int a[], int size, int i) {
+		int left = 2 * i + 1;
+		int right = 2 * (i + 1);
+		int max = i;
+		int temp;
+		if (left <= size && a[left] > a[max]) {
+			max = left;
+		}
+		if (right <= size && a[right] > a[max]) {
+			max = right;
+		}
+		if (max != i) {
+			temp = a[max];
+			a[max] = a[i];
+			a[i] = temp;
+			// 避免调整之后以max为父节点的子树不是堆
+			MaxHeapify(a, size, max);
+		}
+	}
+```
+
+***建立堆***
+
+```
+public static void BuildMaxHeap(int a[], int size) {
+		for (int i = size / 2 - 1; i >= 0; i--) {
+			MaxHeapify(a, size - 1, i);
+		}
+	}
+```
+
+***堆排序***
+
+```
+public static void HeapSort(int a[], int size) {
+		int temp;
+		BuildMaxHeap(a, size);
+		for (int i = size - 1; i >= 1; i--) {
+			temp = a[i];
+			a[i] = a[0];
+			a[0] = temp;
+			MaxHeapify(a, i - 1, 0);
+		}
+	}
+```
+
+**堆排序的时空复杂度**
+
+***时间复杂度***
+
+ - 堆排序的时间复杂度，主要在初始化堆过程和每次选取最大数后重新建堆的过程。
+ - 初始化建堆过程时间：**O(n)**，重新建堆的时间复杂度是：**O(lgn)**，所以总的时间复杂度是**O(nlgn)**。
+ 
+***空间复杂度***
+ 
+ - 该排序算法的空间复杂度为一个常量，即不随被处理数据量n的大小而改变时，可表示为**O(1)**。
+
+# 后记
+堆排序与快速排序，归并排序一样都是时间复杂度O(nlgn)的几种常见排序方法。
+

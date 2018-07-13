@@ -1,0 +1,54 @@
+---
+layout:     post
+title:      "GIT的Push和Pull，强制Pull覆盖本地命令"
+subtitle:   "关于Git经常用到的上传与下拉命令"
+date:       2017-03-08 19:20:00
+author:     "Zicon"
+header-img: "img/post-bg.jpg"
+catalog: true
+tags:
+    - Git
+---
+
+> “主要是为了提醒自己啦”
+
+
+# 前言
+
+今天我总结的是在项目中经常用到的Git命令，上传和下拉文件。
+
+恩，其实是直接从我的CSDN搬过来的就是了。
+
+---
+
+# 正文
+
+接下来说说Git命令。当然在进行上传和下拉操作之前，你首先要做的就是将本地和Git库连接起来。
+
+连接远程库：```git remote add origin + 你Git库的地址```。
+其中，origin是你对这个Git库地址的标识。
+
+一、把文件从本地上传到库中
+ 
+ - 第一步：使用命令 git add命令把文件添加到暂存区里面去。git add * 命令是将当前文件夹内所有文件均添加到暂存区。```举例：git add abc.txt```
+
+ - 第二步：使用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支上。
+ ```举例：git commit -m "对更新的简介"```
+
+ - 第三步：把本地库的内容推送到远程，使用 git push命令，实际上是把当前分支master推送到远程。```命令：git push origin master```
+
+二、把文件从库中下拉到本地 （强制覆盖本地文件）
+
+```
+git fetch - -all  
+git reset - -hard origin/master
+git pull（可不写）
+``` 
+ 
+# 后记
+
+参考资料：[手把手教你使用Git](http://blog.jobbole.com/78960/)
+[ Git pull 强制覆盖本地文件](http://blog.csdn.net/baple/article/details/49872765)
+
+
+

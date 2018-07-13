@@ -1,0 +1,95 @@
+---
+layout:     post
+title:      "Windows下Cygwin安装经历"
+subtitle:   "Windows下想不安装虚拟机而使用Hadoop吗"
+date:       2017-03-19 18:06:00
+author:     "Zicon"
+header-img: "img/post-bg.jpg"
+catalog: true
+tags:
+    - Cygwin
+---
+
+> “学会偷懒哈哈”
+
+
+# 前言
+
+Zicon初次接触Hadoop，由于机子跑虚拟机实在太卡了，而且网络连接上又出现了这样那样的问题。所以，决定在win7下用cygwin来搭建和学习hadoop。
+
+在这里先总结下自己的配置过程。
+
+---
+
+# 正文
+
+**第一步准备**
+
+自行前往官网下载JDK、Cygwin、Hadoop。
+
+值得注意的是，Hadoop要下载稳定版，即命名格式带tar，如：`hadoop-2.x.x.tar.gz`
+
+**JDK的配置**
+
+ - JDK安装时注意最好不要安装到带有空格的路径名下，否则在配置Hadoop的配置文件时会找不到JDK。
+ - 安装完成后开始配置环境变量”JAVA_HOME“，变量值为之前安装jdk的目录。
+ - 在已有的系统变量”path“的变量值加上”%JAVA_HOME%\bin;。（每个变量以“;”隔开）
+
+**Cygwin的安装** 
+
+ - 双击下载好的安装文件Setup.exe。点击下一步，选择install from internet。
+ - 指定安装目录（Root Directory），下面的单选框默认即可，点击下一步。
+ - 选择下载的安装包存放路径（Local Package Directory），后点击下一步。
+ - 选择连接方式，第一个（默认）Direct Connection即可，点击下一步。
+ - 选择一个镜像站点，默认选择第一个即可，点击下一步。
+ - 从选中的镜像站点中下载两个文件，稍等片刻后到了最关键的一步————选择要下载的包。
+ - 需要注意，在上述选择界面中必须要选择`Base下的sed`、`Editors下的vim`以及`net下openssh和openssl`，其他按照默认即可。
+ - 点击下一步会显示你选择的安装包，再点击下一步等待安装完成。
+
+***在安装时需要注意的是***
+
+如果安装进度条长时间卡着不动，有可能是连接发生了中断，你可以取消当前安装。只要再次按之前的步骤选择相同的连接网址、存放地址与要安装的包，下载会继续上次的进度进行安装。网络不好的同学可以在晚上11点之后或者一大早进行安装。
+ 
+安装好Cygwin之后要配置环境变量，在系统变量列表里双击“Path”变量，在变量值后输入安装的Cygwin的bin目录。
+ 
+***检查Cygwin安装的包***
+ 
+输入$ cygcheck -c，显示Cygwin安装的包。cygwin编译搭建hadoop环境需要安装的软件包：
+
+ - openssh 
+ - openssl 
+ - sed 
+ - zlib 
+ - tcp_wrappers 
+ - diffutils 
+ - vim 
+ - subversion
+ 
+***Cygwin没有自动卸载功能，需要手动操作3个步骤如下：***
+
+ - 停止服务: $ net stop 服务名
+ - 删除服务: $ cygrunsrv -R 服务名
+ - 删除cygwin文件
+
+***安装ssh服务***
+
+ - 双击桌面上的Cygwin图标，启动Cygwin，输入ssh-host-config命令。
+ - 执行后，会提示输入密码，否则会退出该配置，此时输入密码和确认密码，回车。 
+ - 最后出现Host configuration finished.Have fun!表示安装成功。
+ 
+***配置无密码ssh服务***
+ 
+ - 输入$ ssh-keygen -t rsa 
+ - 输入$ cd .ssh/ 
+ - 输入$ cp id_rsa.pub authorized_keys  
+ - 最后输入$ ls 会显示`authorized_keys  id_rsa  id_rsa.pub`即表示安装成功
+ 
+***验证ssh***
+
+ - 输入$ ssh localhost，然后输入yes，最后输入$ who。
+ - 会显示`用户名     tty0         连接时间(::1)`
+ 
+# 后记
+现在就初步搭配好Cygwin的配置了，之后Zicon会在新的博客进行Hadoop的安装说明。
+
+
