@@ -66,7 +66,7 @@ tags:
  
  XMind的下载安装教程，请看：[XMind8 Pro安装激活教程](https://blog.csdn.net/Abandon_Sun/article/details/79731986)
  
-```
+---
 
 # 后记
 好了，这次主要是记录下自己在进行Android开发时用到的一些环境配置的搭建教程了。
