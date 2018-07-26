@@ -33,7 +33,7 @@ tags:
  
  **总体分支**
 
-	![](https://ZZicon.github.io/ZiconBlog/img/android_xmind/1.png)
+![](https://ZZicon.github.io/ZiconBlog/img/android_xmind/1.png)
  
  笔者将整理的XMind文件存放在Github上，欢迎有需自取，[点击打开](https://github.com/ZZicon/ZiconBlog/blob/gh-pages/file/Android.xmind)。
  
