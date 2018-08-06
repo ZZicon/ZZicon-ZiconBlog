@@ -37,14 +37,14 @@ tags:
 ```
 int flag = 0;
 if (true) {
-	flag = 1;
+    flag = 1;
 } else {
-	flag = 2;
+    flag = 2;
 }
 if (flag == 1) {
-	...
+    ...
 } else {
-	...
+    ...
 }
 ```
 
@@ -55,14 +55,14 @@ final int INSIDE = 1;
 final int OUTSIDE = 2;
 int position = 0;
 if (true) {
-	position = INSIDE;
+    position = INSIDE;
 } else {
-	position = OUTSIDE;
+    position = OUTSIDE;
 }
 if (position == INSIDE) {
-	...
+    ...
 } else {
-	...
+    ...
 }
 ```
 
@@ -81,11 +81,11 @@ a.setVisibility(View.GONE);
 b.setVisibility(View.GONE);
 c.setVisibility(View.GONE);
 if (id = R.id.a_id) {
-	a.setVisibility(View.VISIBILITY);
+    a.setVisibility(View.VISIBILITY);
 } else if (id = R.id.b_id) {
-	b.setVisibility(View.VISIBILITY);
+    b.setVisibility(View.VISIBILITY);
 } else {
-	c.setVisibility(View.VISIBILITY);
+    c.setVisibility(View.VISIBILITY);
 }
 ```
 
