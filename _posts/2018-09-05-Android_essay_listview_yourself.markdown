@@ -281,11 +281,33 @@ public class NewsAdapter extends BaseAdapter {
 	private void initDate(){
 		// 获取数据
 		// mNewsItems = ...
+		
+		// 补充一个，对list排序
+		Collections.sort(newsItems, new Comparator<NewsData>() {
+			/*
+             * int compare(Person p1, Person p2) 返回一个基本类型的整型，
+             * 返回负数表示：p1 小于p2，
+             * 返回0 表示：p1和p2相等，
+             * 返回正数表示：p1大于p2
+             */
+            @Override
+            public int compare(NewsData o1, NewsData o2) {
+                // 按照时间降序排序
+                if (o1.getDateline() > o2.getDateline()) {
+                    return -1;
+                }
+                if (o1.getDateline() == o2.getDateline()) {
+                    return 0;
+                }
+                return -1;
+            }
+        });
 	}
 
 }
  ```
 
+ 
 ---
 
 # 后记
