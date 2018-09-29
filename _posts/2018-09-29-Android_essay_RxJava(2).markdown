@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Android随笔之初心者的RxJava总结"
+title:      "Android随笔之初心者的RxJava操作符总结"
 subtitle:   "关于Android开发的相关知识点"
 date:       2018-09-29 15:27:00
 author:     "Zicon"
