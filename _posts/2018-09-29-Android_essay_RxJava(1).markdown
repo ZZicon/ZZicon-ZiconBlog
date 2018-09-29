@@ -37,12 +37,15 @@ compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 ```
 
  **创建上游**
+ 
  上游指的是在RxJava中负责发送事件的Observable，他通过调用onNext()、onCompleted()、onError()方法，决定什么时候触发事件以及触发怎样的事件。
  
  **创建下游**
+ 
  下游指的是在RxJava中负责接收事件的Observer，他通过实现onNext()、onCompleted()、onError()方法，决定对触发的事件做何种处理。
  
  **订阅（连通）**
+ 
  Observable调用subscribe方法连通Observer
 
  **实例**
@@ -119,6 +122,7 @@ Observable.create(new ObservableOnSubscribe<Integer>() {
  ```
  
  **线程控制**
+ 
  在链式结构的任意位置调用以下两个方法即可控制上下游的线程。
 
  ```
